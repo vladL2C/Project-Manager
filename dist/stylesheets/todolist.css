@@ -39,5 +39,6 @@ p.menu-label {
 
 .modal-card {
   transform: translateY(-500px);
-  transition: transform 3s;
+  transition: transform 0.5s;
 }
+
