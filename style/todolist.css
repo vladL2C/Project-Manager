@@ -37,6 +37,7 @@ p.menu-label {
   font-size: 1.5rem;
 }
 
-.modal-is-active {
-  
+.modal-card {
+  transform: translateY(-500px);
+  transition: transform 3s;
 }
