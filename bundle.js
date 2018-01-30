@@ -76,9 +76,8 @@ var createProjectModal = document.querySelector('.modal');
 function createProject() {
   createProjectModal.classList.add('is-active');
   var modalCard = document.querySelector('.modal-card');
-  setTimeout(function () {
-    return modalCard.style.transform = 'translateY(0px)';
-  });
+  modalCard.style.transform = 'translateY(0px)';
+  //setTimeout(() => modalCard.style.transform = 'translateY(0px)');
 }
 
 createProjectButton.addEventListener('click', createProject);
