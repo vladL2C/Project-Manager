@@ -1,0 +1,38 @@
+.container.title{
+  text-align: center;
+}
+
+section.hero.is-danger {
+  background-color: #ff4351;
+}
+
+h1.title {
+  font-size: 4rem;
+}
+
+ul.menu-list {
+  
+}
+
+.columns.is-mobile {
+  margin-top: 20px;
+}
+
+a.button.project {
+  color: #ffefef;
+  margin-top: 0.6rem;
+  background: #ff4351;
+  transition: transform 0.2s;
+
+}
+
+a.button.project:hover {
+  color: #ffefef;;
+  background: #31b6ef;
+  transform: scale(1.1,1.1);
+  box-shadow: 4px 4px 10px 1px #9e9393
+}
+
+p.menu-label {
+  font-size: 1.5rem;
+}

@@ -4,20 +4,65 @@
 <head>
   <meta charset="utf-8">
 
-  <title>The HTML5 Herald</title>
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="SitePoint">
-
-  <link rel="stylesheet" href="todolist.css">
-
-  <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-  <![endif]-->
+  <title>TodoList</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style/todolist.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
 </head>
 
 <body>
-  <div class="test"></div>
 
+
+    <section class="hero is-danger"> 
+          <div class="hero-body">
+            <div class="container title">
+              <h1 class="title">
+                Todoit
+              </h1>
+              <h2 class="subtitle">
+                <img src="images.png" width="60" height="60">
+              </h2>
+              <a class="button is-primary">Create Project</a>
+            </div>
+          </div>
+    </section>
+   
+
+
+
+  <div class="column is-half is-offset-one-quarter">
+        <aside class="menu">
+          <p class="menu-label">
+            Projects
+          </p>
+          <ul class="menu-list">
+            <li>
+              <ul class="menu-items">
+                <li><a class="button project">Project 1</a></li>
+                <li><a class="button project">Some other project</a></li>
+              </ul>
+            </li>
+          </ul>
+        </aside>
+  </div>
+
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Modal title</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Save changes</button>
+      <button class="button">Cancel</button>
+    </footer>
+  </div>
+</div>
 
 
   <script src="bundle.js"></script>
