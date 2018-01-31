@@ -57,18 +57,17 @@ function renderProjects(projects) {
 
 
 
-
-
-
-
 //project modal to add todo's
 
 const modalTask = document.querySelector('.modal.task');
 const modalCardTask = document.querySelector('.modal-card.task');
 
+let currentOpenProject = 0;
+
 function openProjectModal(e) {
   if (e.target.className === 'button project') {
     modalTask.classList.add('is-active');
+    currentOpenProject = parseInt(e.target.dataset.projectIndex);
     setTimeout(() => modalCardTask.style.transform = 'translateY(0px)');
   }
 }
