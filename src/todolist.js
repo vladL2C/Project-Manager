@@ -1,3 +1,5 @@
+let projectArray = [];
+
 const createProjectButton = document.querySelector('.button.create.is-primary');
 
 
@@ -17,6 +19,7 @@ function createProject(e) {
   if (e.target.textContent === 'Create') {
     if (projectInput.value !== "") {
       projectArray.push(createProjectFactory(projectInput.value));
+      renderProjects(projectArray);
       createProjectModal.classList.remove('is-active');
       modalCard.style.transform = 'translateY(-500px)'
     } else {
@@ -38,24 +41,30 @@ modalCard.addEventListener('click', createProject);
 const projectMenuItem = document.querySelector('.menu-items');
 function createProjectFactory(projectName) {
   //append project
+  return { projectName }
+}
+
+function renderProjects(projects) {
+  projectMenuItem.innerHTML = "";
+  projects.forEach((project,index) => {
   const projectButton = document.createElement('a');
   projectButton.setAttribute('class','button project');
-  projectButton.textContent = projectName;
+  projectButton.textContent = project.projectName;
+  projectButton.dataset.projectIndex = index;
   projectMenuItem.appendChild(projectButton);
-
-
-  return { projectName }
+  });
 }
 
 
 
-let projectArray = [];
-projectArray.push(createProjectFactory('Astravisual'));
 
-const projectMenu = document.querySelector('.menu');
+
+
+
+//project modal to add todo's
+
 const modalTask = document.querySelector('.modal.task');
 const modalCardTask = document.querySelector('.modal-card.task');
-console.log(modalTask);
 
 function openProjectModal(e) {
   if (e.target.className === 'button project') {
@@ -63,4 +72,10 @@ function openProjectModal(e) {
     setTimeout(() => modalCardTask.style.transform = 'translateY(0px)');
   }
 }
+const projectMenu = document.querySelector('.menu');
 projectMenu.addEventListener('click',openProjectModal);
+
+
+//pre render a project
+projectArray.push(createProjectFactory('Astravisual'));
+renderProjects(projectArray);
