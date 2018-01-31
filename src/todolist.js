@@ -47,6 +47,8 @@ function createProjectFactory(projectName) {
   return { projectName }
 }
 
+
+
 let projectArray = [];
 projectArray.push(createProjectFactory('Astravisual'));
 
