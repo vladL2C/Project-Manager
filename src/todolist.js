@@ -43,7 +43,7 @@ const projectMenuItem = document.querySelector('.menu-items');
 const todoInbox = document.querySelector('.inbox');
 
   function removeTodos(e) {
-    console.log(e.target.className);
+    console.log(e.target.parentNode);
   } 
 
   todoInbox.addEventListener('click', removeTodos);
