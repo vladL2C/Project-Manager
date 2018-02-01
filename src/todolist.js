@@ -39,9 +39,37 @@ function createProject(e) {
 modalCard.addEventListener('click', createProject);
 
 const projectMenuItem = document.querySelector('.menu-items');
+
+const todoInbox = document.querySelector('.inbox');
+
 function createProjectFactory(projectName) {
-  //append project
-  return { projectName }
+  
+  function addTodo(todoText) {
+    this.todos.push({ todoText, checked: false });
+  }
+
+  function createTodos(todos) {
+    todoInbox.innerHTML = "";
+    todos.forEach((todo,index) => {
+      const itemContainer = document.createElement('div');
+      itemContainer.setAttribute('class','item');
+      todoInbox.appendChild(itemContainer);
+
+      const checkbox = document.createElement('input');
+      checkbox.type = "checkbox";
+      itemContainer.appendChild(checkbox);
+
+      let pContent = document.createElement('p');
+      itemContainer.appendChild(pContent);
+      pContent.textContent = todo.todoText;
+    });
+  }
+
+  function renderTodos() {
+    this.createTodos(this.todos);
+  }
+
+  return { projectName, todos: [], addTodo, createTodos, renderTodos };
 }
 
 function renderProjects(projects) {
@@ -55,26 +83,41 @@ function renderProjects(projects) {
   });
 }
 
-
+let currentOpenProject = 0;
+let project;
 
 //project modal to add todo's
 
 const modalTask = document.querySelector('.modal.task');
 const modalCardTask = document.querySelector('.modal-card.task');
 
-let currentOpenProject = 0;
 
 function openProjectModal(e) {
   if (e.target.className === 'button project') {
     modalTask.classList.add('is-active');
     currentOpenProject = parseInt(e.target.dataset.projectIndex);
+    project = projectArray[currentOpenProject];
     setTimeout(() => modalCardTask.style.transform = 'translateY(0px)');
   }
 }
 const projectMenu = document.querySelector('.menu');
 projectMenu.addEventListener('click',openProjectModal);
 
+//add todo's
+const todoInput = document.querySelector('.input.todo.is-primary');
+function addTodo() {
+  project.addTodo(todoInput.value);
+  todoInput.value = "";
+  project.renderTodos();
+
+}
+
+const addTodoButton = document.querySelector('.button.add.is-success');
+addTodoButton.addEventListener('click',addTodo);
+
 
 //pre render a project
 projectArray.push(createProjectFactory('Astravisual'));
 renderProjects(projectArray);
+
+
