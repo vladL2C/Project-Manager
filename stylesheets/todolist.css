@@ -51,6 +51,17 @@ p.menu-label {
   background: #ffeb3b;
 }
 
+
+.svg-inline--fa {
+  color: red;
+  margin-right: 1rem;
+  transition: transform 0.2s;
+}
+
+.svg-inline--fa:hover {
+  transform: scale(2,2);
+}
+
     .inbox {
       max-width:400px;
       margin: auto;
@@ -89,3 +100,4 @@ p.menu-label {
       font-weight: 200;
       border-left: 1px solid #D1E2FF;
     }
+
