@@ -42,11 +42,19 @@ const projectMenuItem = document.querySelector('.menu-items');
 
 const todoInbox = document.querySelector('.inbox');
 
+  function removeTodos(e) {
+    console.log(e.target.className);
+  } 
+
+  todoInbox.addEventListener('click', removeTodos);
+
+
 function createProjectFactory(projectName) {
   
   function addTodo(todoText) {
     this.todos.push({ todoText, checked: false });
   }
+
 
   function createTodos(todos) {
     todoInbox.innerHTML = "";
@@ -62,6 +70,12 @@ function createProjectFactory(projectName) {
       let pContent = document.createElement('p');
       itemContainer.appendChild(pContent);
       pContent.textContent = todo.todoText;
+
+      const deleteButton = document.createElement('i');
+      deleteButton.dataset.idx = index;
+      deleteButton.id = 'del';
+      deleteButton.setAttribute('class','fas fa-trash');
+      itemContainer.appendChild(deleteButton);
     });
   }
 
@@ -69,7 +83,11 @@ function createProjectFactory(projectName) {
     this.createTodos(this.todos);
   }
 
-  return { projectName, todos: [], addTodo, createTodos, renderTodos };
+  function removeTodo(position) {
+    this.todos.splice(position,1);
+  }
+
+  return { projectName, todos: [], addTodo, createTodos, renderTodos, removeTodo };
 }
 
 function renderProjects(projects) {
@@ -99,6 +117,7 @@ function openProjectModal(e) {
     project = projectArray[currentOpenProject];
     setTimeout(() => modalCardTask.style.transform = 'translateY(0px)');
   }
+  project.renderTodos();
 }
 const projectMenu = document.querySelector('.menu');
 projectMenu.addEventListener('click',openProjectModal);
@@ -111,6 +130,14 @@ function addTodo() {
   project.renderTodos();
 
 }
+
+//cancel todo modal
+const cancelTodo = document.querySelector('.delete.cancel');
+cancelTodo.addEventListener('click', function() {
+  modalTask.classList.remove('is-active');
+  modalCardTask.style.transform = 'translateY(-800px)';
+
+});
 
 const addTodoButton = document.querySelector('.button.add.is-success');
 addTodoButton.addEventListener('click',addTodo);
