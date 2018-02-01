@@ -43,7 +43,10 @@ const projectMenuItem = document.querySelector('.menu-items');
 const todoInbox = document.querySelector('.inbox');
 
   function removeTodos(e) {
-    console.log(e.target.parentNode);
+    if (e.target.parentNode.id === 'del') {
+      project.removeTodo(e.target.parentNode.dataset.idx);
+    }
+    project.renderTodos();
   } 
 
   todoInbox.addEventListener('click', removeTodos);
