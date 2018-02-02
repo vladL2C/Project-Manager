@@ -166,15 +166,22 @@ saveButton.addEventListener('click', saveProjects);
 function saveProjects() {
   localStorage.clear();
   localStorage.setItem('projects', JSON.stringify(projectArray));
+  alert('projects saved');
 }
+
+let loaded = false;
 //localStorage load
 const loadButton = document.querySelector('.button.load');
 function loadProjects() {
+  if (loaded !== false) {
+    alert('already loaded');
+    return
+  }
   const mySavedProjects = JSON.parse(localStorage.getItem('projects'));
   mySavedProjects.forEach((project) => {
     projectArray.push(createProjectFactory(project.projectName, [...project.todos]));
-
   });
+  loaded = true;
   renderProjects(projectArray);
 }
 
