@@ -23,10 +23,8 @@
               <h2 class="subtitle">
                 <img src="assets/images.png" width="60" height="60">
               </h2>
-              <a class="button create is-primary">Create Project</a>
-              <a class="button save is-primary">Save Projects</a>
-              <a class="button load is-primary">Load Projects</a>
-              <a class="button load is-primary">Delete a Project</a>
+              <div class="column"> <a class="button create is-primary">Create Project</a></div>
+              </div>  
             </div>
           </div>
     </section>
@@ -47,6 +45,26 @@
           </ul>
         </aside>
   </div>
+
+    <div class="column is-half is-offset-one-quarter">
+        <aside class="menu options">
+          <p class="menu-label options">
+            Options
+          </p>
+          <ul class="menu-list options">
+            <li>
+              <ul class="menu-items options">
+                <div class="optionbuttons">
+                <a class="button save is-primary">Save Projects</a>
+                <a class="button load is-primary">Load Projects</a>
+                <a class="button delproj is-primary">Clear Project Storage</a>
+              </div>  
+              </ul>
+            </li>
+          </ul>
+        </aside>
+  </div>
+
 
 <div class="modal">
   <div class="modal-background"></div>
@@ -84,6 +102,6 @@
 </div>
 
 
-  <script src="bundle.js"></script>
+  <script src="../src/todolist.js"></script>
 </body>
 </html>
