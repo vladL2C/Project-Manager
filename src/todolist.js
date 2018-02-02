@@ -43,13 +43,22 @@ const projectMenuItem = document.querySelector('.menu-items');
 const todoInbox = document.querySelector('.inbox');
 
   function removeTodos(e) {
+    if (e.target.type === 'checkbox') return;
     if (e.target.parentNode.id === 'del') {
       project.removeTodo(e.target.parentNode.dataset.idx);
     }
     project.renderTodos();
+    
   } 
-
   todoInbox.addEventListener('click', removeTodos);
+
+  function updateChecked(e) {
+    project.updateChecked(parseInt(e.target.dataset.idx));
+  }
+
+
+  todoInbox.addEventListener('change', updateChecked);
+
 
 
 function createProjectFactory(projectName) {
@@ -68,6 +77,8 @@ function createProjectFactory(projectName) {
 
       const checkbox = document.createElement('input');
       checkbox.type = "checkbox";
+      checkbox.dataset.idx = index;
+      checkbox.checked = todo.checked;
       itemContainer.appendChild(checkbox);
 
       let pContent = document.createElement('p');
@@ -90,7 +101,11 @@ function createProjectFactory(projectName) {
     this.todos.splice(position,1);
   }
 
-  return { projectName, todos: [], addTodo, createTodos, renderTodos, removeTodo };
+  function updateChecked(target) {
+   return this.todos[target].checked = !this.todos[target].checked;
+  }
+
+  return { projectName, todos: [], addTodo, createTodos, renderTodos, removeTodo, updateChecked };
 }
 
 function renderProjects(projects) {
@@ -145,9 +160,28 @@ cancelTodo.addEventListener('click', function() {
 const addTodoButton = document.querySelector('.button.add.is-success');
 addTodoButton.addEventListener('click',addTodo);
 
+//localStorage save
+const saveButton = document.querySelector('.button.save');
+saveButton.addEventListener('click', saveProjects);
+function saveProjects() {
+  localStorage.clear();
+  localStorage.setItem('projects', JSON.stringify(projectArray));
+}
+//localStorage load
+const loadButton = document.querySelector('.button.load');
+function loadProjects() {
+  const mySavedProjects = JSON.parse(localStorage.getItem('projects'));
+  mySavedProjects.forEach((project) => {
+    projectArray.push(createProjectFactory(project.projectName));
+  })
+  renderProjects(projectArray);
+}
+
+loadButton.addEventListener('click', loadProjects);
+//delete project
 
 //pre render a project
-projectArray.push(createProjectFactory('Astravisual'));
-renderProjects(projectArray);
+//projectArray.push(createProjectFactory('Astravisual'));
+//renderProjects(projectArray);
 
 
