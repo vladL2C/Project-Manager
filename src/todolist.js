@@ -61,7 +61,7 @@ const todoInbox = document.querySelector('.inbox');
 
 
 
-function createProjectFactory(projectName) {
+function createProjectFactory(projectName, todos = []) {
   
   function addTodo(todoText) {
     this.todos.push({ todoText, checked: false });
@@ -105,7 +105,7 @@ function createProjectFactory(projectName) {
    return this.todos[target].checked = !this.todos[target].checked;
   }
 
-  return { projectName, todos: [], addTodo, createTodos, renderTodos, removeTodo, updateChecked };
+  return { projectName, todos, addTodo, createTodos, renderTodos, removeTodo, updateChecked };
 }
 
 function renderProjects(projects) {
@@ -172,8 +172,9 @@ const loadButton = document.querySelector('.button.load');
 function loadProjects() {
   const mySavedProjects = JSON.parse(localStorage.getItem('projects'));
   mySavedProjects.forEach((project) => {
-    projectArray.push(createProjectFactory(project.projectName));
-  })
+    projectArray.push(createProjectFactory(project.projectName, [...project.todos]));
+
+  });
   renderProjects(projectArray);
 }
 
