@@ -125,6 +125,10 @@ let project;
 const modalTask = document.querySelector(".modal.task");
 const modalCardTask = document.querySelector(".modal-card.task");
 
+function keypressHandler(e) {
+  if(e.keyCode === 13) addTodo();
+}
+
 function openProjectModal(e) {
   if (e.target.className === "button project") {
     modalTask.classList.add("is-active");
@@ -133,6 +137,7 @@ function openProjectModal(e) {
     setTimeout(() => (modalCardTask.style.transform = "translateY(0px)"));
   }
   project.renderTodos();
+  document.addEventListener('keypress', keypressHandler)
 }
 
 const projectMenu = document.querySelector(".menu");
@@ -151,6 +156,7 @@ const cancelTodo = document.querySelector(".delete.cancel");
 cancelTodo.addEventListener("click", function() {
   modalTask.classList.remove("is-active");
   modalCardTask.style.transform = "translateY(-800px)";
+  document.removeEventListener('keypress', keypressHandler);
 });
 
 const addTodoButton = document.querySelector(".button.add.is-success");
