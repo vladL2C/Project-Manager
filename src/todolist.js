@@ -134,6 +134,7 @@ function openProjectModal(e) {
   }
   project.renderTodos();
 }
+
 const projectMenu = document.querySelector(".menu");
 projectMenu.addEventListener("click", openProjectModal);
 
